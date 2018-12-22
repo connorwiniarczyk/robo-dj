@@ -4,12 +4,13 @@ set("log.file.path", "/home/connor/Desktop/<script>.log")
 set("log.stdout", true)
 set("server.telnet", true)
 
-#default = mksafe(
-#	single("/home/connor/Desktop/music/The Distance - Cake.mp3")
-#)
+default = mksafe(
+	playlist("default.pls")
+)
 
 radio = fallback([
-	mksafe(request.queue(id="request")),
+	request.queue(id="request"),
+	default
 ])
 
 output.icecast(
