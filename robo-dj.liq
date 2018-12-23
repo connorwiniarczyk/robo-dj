@@ -4,17 +4,15 @@ set("log.file.path", "/home/connor/Desktop/<script>.log")
 set("log.stdout", true)
 set("server.telnet", true)
 
-default = mksafe(
-	playlist("default.pls")
-)
+default = playlist("default.pls")
 
-#song = mksafe(single(
-#	"http://10.0.0.146:80/The_Ting_Tings/We_Started_Nothing/03-Fruit_Machine.mp3"
-#))
+clock = single(say: I am a robot)
 
 radio = fallback([
-	request.queue(id="request"),
-	default
+	clock
+	# request.queue(id="request"),
+	# default,
+	# blank
 ])
 
 output.icecast(
