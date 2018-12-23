@@ -8,6 +8,10 @@ default = mksafe(
 	playlist("default.pls")
 )
 
+#song = mksafe(single(
+#	"http://10.0.0.146:80/The_Ting_Tings/We_Started_Nothing/03-Fruit_Machine.mp3"
+#))
+
 radio = fallback([
 	request.queue(id="request"),
 	default
