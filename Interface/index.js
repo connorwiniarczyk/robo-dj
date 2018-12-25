@@ -1,20 +1,27 @@
 const telnet = require("telnet-client")
 
-const run = async function(){
+const run = async function() {
+
 	let connection = new telnet()
 
 	let params = {
-		host: '10.0.2.15',
-		port: '1234',
+		host: 'localhost',
+		port: 1234,
 		shellPrompt: '',
-		timeout: 1500
+		timeout: 1500,
 	}
 
-	await connection.connect(params)
+	console.log("running")
 
-	let res = await connection.exec('uptime')
+	connection.connect(params)
 
-	console.log(res)
+
+
+	console.log(await connection.send("uptime\n"))
+	console.log(await connection.send("request.resolving\n"))
+	console.log(await connection.send("request.push http://10.0.0.146:80/Music/The_Ting_Tings/We_Started_Nothing/08-We_Walk.mp3\n"))
 }
+
+run()
 
 console.log("test")
