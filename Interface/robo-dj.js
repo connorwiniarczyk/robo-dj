@@ -9,27 +9,27 @@ const params = {
 	timeout: 100,
 }
 
-const connect = function(){
-	let connection = new telnet()
-	connection.connect(params)
+let server = new telnet()
 
-	return connection
-}
+// const connect = function(){
+// 	let connection = new telnet()
+// 	connection.connect(params)
+
+// 	return connection
+// }
 
 const exec = async function(command){
-	console.log("excecuting")
-	const connection = connect()
-	const result = connection.send(`${command}\n`)
-
-	console.log("result")
-
-	return result
+	server.connect()
+	return server.send(`${command}\n`)
 }
 
-exports.uptime = () => exec("uptime")
-exports.help = () => exec("help")
-exports.push = (uri) => exec(`push ${uri}`)
-
+exports.uptime =	() => exec("uptime")
+exports.help = 		() => exec("help")
+exports.list = 		() => exec("list")
+exports.exit =		() => exec("exit")
 
 exports.help()
+.then(res => console.log(res))
+
+exports.list()
 .then(res => console.log(res))
