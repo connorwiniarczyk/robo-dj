@@ -6,22 +6,30 @@ const params = {
 	host: 'localhost',
 	port: 1234,
 	shellPrompt: '',
-	timeout: 1500,
+	timeout: 100,
 }
 
-const connect = async function(){
-	const connection = new telnet()
-	await connection.connect(params)
+const connect = function(){
+	let connection = new telnet()
+	connection.connect(params)
 
 	return connection
 }
 
 const exec = async function(command){
-	const connection = await connect()
-	const result = await connection.send(`${command} \n`)
-	await connection.end()
+	console.log("excecuting")
+	const connection = connect()
+	const result = connection.send(`${command}\n`)
+
+	console.log("result")
 
 	return result
 }
 
 exports.uptime = () => exec("uptime")
+exports.help = () => exec("help")
+exports.push = (uri) => exec(`push ${uri}`)
+
+
+exports.help()
+.then(res => console.log(res))
