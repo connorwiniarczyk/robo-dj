@@ -1,5 +1,9 @@
 const robo = require("./robo-dj.js")
 
-robo.uptime()
-.then(data => console.log(data))
-.catch(err => console.log(err.message))
+robo.push(
+	"board_requests",
+	"http://10.0.0.146:80/Music/Hello.m4a"
+)
+
+robo.skip()
+robo.exit()
